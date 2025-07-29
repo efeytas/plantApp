@@ -1,0 +1,77 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:plantapp/core/locale_keys.g.dart';
+import 'package:plantapp/core/router.dart';
+import 'package:plantapp/core/services.dart';
+import 'package:plantapp/shared/theme/custom_text_style.dart';
+import 'package:plantapp/shared/utils/image_constant.dart';
+import 'package:plantapp/shared/utils/size_utils.dart';
+import 'package:plantapp/shared/widgets/button/custom_primary_button.dart';
+import 'package:plantapp/shared/widgets/custom_image_view.dart';
+
+@RoutePage()
+class GetStartedView extends StatelessWidget {
+  const GetStartedView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          CustomImageView(
+            imagePath: ImageConstant.getStaredBackground,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top,
+              bottom: MediaQuery.of(context).padding.bottom,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
+                  child: Text(
+                    LocaleKeys.onboarding_firstPageTitle.tr(),
+                    style: CustomTextStyle.headline,
+                  ),
+                ),
+                SizedBox(height: 8.v),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
+                  child: Text(
+                    LocaleKeys.onboarding_firstPageSubTitle.tr(),
+                    style: CustomTextStyle.bodyMedium,
+                  ),
+                ),
+                SizedBox(height: 24.v),
+                Expanded(
+                  child: CustomImageView(imagePath: ImageConstant.imgOnboarding1),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
+                  child: CustomPrimaryButton(text: LocaleKeys.buttons_getStarted.tr(), onPressed: (){
+                    router.pushAndPopUntil(OnboardingRoute(), predicate: (route) => false);
+                  },),
+                ),
+                SizedBox(height: 16.v),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 56.h),
+                  child: Text(
+                    LocaleKeys.onboarding_legal_text.tr(),
+                    textAlign: TextAlign.center,
+                    style: CustomTextStyle.bodySmall
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

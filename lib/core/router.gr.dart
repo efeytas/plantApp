@@ -11,6 +11,22 @@
 part of 'router.dart';
 
 /// generated route for
+/// [GetStartedView]
+class GetStartedRoute extends PageRouteInfo<void> {
+  const GetStartedRoute({List<PageRouteInfo>? children})
+    : super(GetStartedRoute.name, initialChildren: children);
+
+  static const String name = 'GetStartedRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const GetStartedView();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingView]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})

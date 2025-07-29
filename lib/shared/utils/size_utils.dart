@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // These are the Viewport values of your Figma Design.
 // These are used in the code as a reference to create your UI Responsively.
 const num figmaDesignWidth = 360;
-const num figmaDesignHeight = 670;
+const num figmaDesignHeight = 800;
 const num figmaDesignStatusBar = 0;
 typedef ResponsiveBuild = Widget Function(
   BuildContext context,
