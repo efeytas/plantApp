@@ -1,0 +1,13 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:plantapp/features/onboarding/ui/screens/onboarding_view.dart';
+
+part 'router.gr.dart';
+
+@AutoRouterConfig(replaceInRouteName: ('View,Route'))
+class AppRouter extends RootStackRouter {
+
+  @override
+  List<AutoRoute> get routes => [
+    AutoRoute(page: OnboardingRoute.page, initial: true),
+  ];
+}
