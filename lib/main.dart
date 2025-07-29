@@ -10,6 +10,7 @@ import 'package:plantapp/shared/theme/theme_helper.dart';
 import 'package:plantapp/shared/utils/size_utils.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
 

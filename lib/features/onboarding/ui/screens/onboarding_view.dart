@@ -1,6 +1,6 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:plantapp/features/onboarding/ui/widgets/onboarding_first_page.dart';
 
 @RoutePage()
 class OnboardingView extends StatefulWidget {
@@ -13,6 +13,10 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        child: OnboardingFirstPage(),
+      ));
   }
 }

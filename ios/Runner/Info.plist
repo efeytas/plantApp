@@ -20,6 +20,13 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>nb</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Used to debug and communicate over the local network</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
