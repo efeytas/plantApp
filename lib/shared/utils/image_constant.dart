@@ -32,6 +32,12 @@ class ImageConstant {
 
   static String icTabMyGarden = '$imagePath/ic_tab_my_garden.svg';
 
-  static String icTabProfile = '$imagePath/ic_tab_profile.svg'; 
+  static String icTabProfile = '$imagePath/ic_tab_profile.svg';
+
+  static String imgHomeLeftLeaf = '$imagePath/img_home_left_leaf.png';
+
+  static String imgHomeRightLeaf = '$imagePath/img_home_right_leaf.png';
+  
+  static String icSearch = '$imagePath/ic_search.svg'; 
   
 }

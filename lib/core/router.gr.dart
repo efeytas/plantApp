@@ -11,6 +11,38 @@
 part of 'router.dart';
 
 /// generated route for
+/// [DiagnoseView]
+class DiagnoseRoute extends PageRouteInfo<void> {
+  const DiagnoseRoute({List<PageRouteInfo>? children})
+    : super(DiagnoseRoute.name, initialChildren: children);
+
+  static const String name = 'DiagnoseRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DiagnoseView();
+    },
+  );
+}
+
+/// generated route for
+/// [GardenView]
+class GardenRoute extends PageRouteInfo<void> {
+  const GardenRoute({List<PageRouteInfo>? children})
+    : super(GardenRoute.name, initialChildren: children);
+
+  static const String name = 'GardenRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const GardenView();
+    },
+  );
+}
+
+/// generated route for
 /// [GetStartedView]
 class GetStartedRoute extends PageRouteInfo<void> {
   const GetStartedRoute({List<PageRouteInfo>? children})
@@ -22,6 +54,22 @@ class GetStartedRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const GetStartedView();
+    },
+  );
+}
+
+/// generated route for
+/// [HomeTabView]
+class HomeTabRoute extends PageRouteInfo<void> {
+  const HomeTabRoute({List<PageRouteInfo>? children})
+    : super(HomeTabRoute.name, initialChildren: children);
+
+  static const String name = 'HomeTabRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeTabView();
     },
   );
 }
@@ -54,6 +102,22 @@ class OnboardingRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const OnboardingView();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfileView]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileView();
     },
   );
 }

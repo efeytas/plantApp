@@ -41,6 +41,9 @@ class CustomTextStyle {
         color: Colors.white.withValues(alpha: 0.7),
         fontWeight: FontWeight.w300,
       );
+
+  static get titleLarge =>
+      theme.textTheme.titleLarge?.roboto.copyWith(fontWeight: FontWeight.w500, fontSize: 24.fSize);
 }
 
 extension on TextStyle {

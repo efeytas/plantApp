@@ -40,6 +40,16 @@ class HomeState {
           description: LocaleKeys.paywall_process.tr(),
           imagePath: ImageConstant.icSpeedoMeter,
         ),
+        PaywallFeatureModel(
+          title: LocaleKeys.paywall_faster.tr(),
+          description: LocaleKeys.paywall_process.tr(),
+          imagePath: ImageConstant.icSpeedoMeter,
+        ),
+        PaywallFeatureModel(
+          title: LocaleKeys.paywall_faster.tr(),
+          description: LocaleKeys.paywall_process.tr(),
+          imagePath: ImageConstant.icSpeedoMeter,
+        ),
       ],
       subscriptionOptions: [
         SubscriptionOptionModel(
