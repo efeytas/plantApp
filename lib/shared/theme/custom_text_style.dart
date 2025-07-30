@@ -19,8 +19,16 @@ class CustomTextStyle {
 
   static get bodySmall => theme.textTheme.bodySmall?.roboto.copyWith(
     height: 1.5
-
   );
+
+  static get boldHeadline => theme.textTheme.titleLarge?.roboto.copyWith(
+    fontWeight: FontWeight.w500,
+  );
+
+  static get extraboldHeadline => theme.textTheme.titleLarge?.roboto.copyWith(
+    fontWeight: FontWeight.w800,
+  );
+
 }
 
 extension on TextStyle {

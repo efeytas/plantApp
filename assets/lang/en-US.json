@@ -1,9 +1,15 @@
 {
-    "onboarding" : {
+    "getStarted" : {
         "firstPageTitle": "Welcome to PlantApp",
         "firstPageSubTitle" : "Identify more than 3000+ plants and 88% accuracy.",
         "legal_text" : "By tapping next, you are agreeing to PlantID Terms of Use & Privacy Policy."
-
+    },
+    "onboarding" : {
+        "first_page_pre_text" : "Take a photo to",
+        "first_page_underlined_text" : "identify",
+        "first_page_after_text" : "the plant!",
+        "second_page_pre_text" : "Get plant",
+        "second_page_underlined_text" : "care guided"
     },
     "buttons" : {
         "getStarted": "Get Started",

@@ -7,7 +7,7 @@ import 'package:plantapp/core/services.dart';
 import 'package:plantapp/shared/theme/custom_text_style.dart';
 import 'package:plantapp/shared/utils/image_constant.dart';
 import 'package:plantapp/shared/utils/size_utils.dart';
-import 'package:plantapp/shared/widgets/button/custom_primary_button.dart';
+import 'package:plantapp/shared/widgets/button/hover_button.dart';
 import 'package:plantapp/shared/widgets/custom_image_view.dart';
 
 @RoutePage()
@@ -36,7 +36,7 @@ class GetStartedView extends StatelessWidget {
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 20.h),
                   child: Text(
-                    LocaleKeys.onboarding_firstPageTitle.tr(),
+                    LocaleKeys.getStarted_firstPageTitle.tr(),
                     style: CustomTextStyle.headline,
                   ),
                 ),
@@ -44,17 +44,17 @@ class GetStartedView extends StatelessWidget {
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 20.h),
                   child: Text(
-                    LocaleKeys.onboarding_firstPageSubTitle.tr(),
+                    LocaleKeys.getStarted_firstPageSubTitle.tr(),
                     style: CustomTextStyle.bodyMedium,
                   ),
                 ),
                 SizedBox(height: 24.v),
                 Expanded(
-                  child: CustomImageView(imagePath: ImageConstant.imgOnboarding1),
+                  child: CustomImageView(imagePath: ImageConstant.imgGetStarted),
                 ),
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 20.h),
-                  child: CustomPrimaryButton(text: LocaleKeys.buttons_getStarted.tr(), onPressed: (){
+                  child: HoverButton(text: LocaleKeys.buttons_getStarted.tr(), onPressed: () async {
                     router.pushAndPopUntil(OnboardingRoute(), predicate: (route) => false);
                   },),
                 ),
@@ -62,7 +62,7 @@ class GetStartedView extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 56.h),
                   child: Text(
-                    LocaleKeys.onboarding_legal_text.tr(),
+                    LocaleKeys.getStarted_legal_text.tr(),
                     textAlign: TextAlign.center,
                     style: CustomTextStyle.bodySmall
                   ),
