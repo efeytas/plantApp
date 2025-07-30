@@ -9,3 +9,5 @@ class PaywallVisibilityToggled extends HomeEvent {
   final bool isVisible;
   PaywallVisibilityToggled(this.isVisible);
 }
+
+class LoadHomeData extends HomeEvent {}

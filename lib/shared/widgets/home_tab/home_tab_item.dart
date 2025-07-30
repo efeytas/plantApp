@@ -29,6 +29,7 @@ class HomeTabItem extends StatelessWidget {
               // Icon
               CustomImageView(
                 imagePath: imagePath ?? "",
+                height: 24.v,
                 color: isSelected! ? ColorSchemes.primaryColorScheme.primary : const Color(0xFFBDBDBD),
               ),
             ],

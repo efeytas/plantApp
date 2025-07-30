@@ -11,7 +11,7 @@ QuestionsResponse _$QuestionsResponseFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
-      imagePath: json['image_path'] as String?,
+      imagePath: json['image_uri'] as String?,
       uri: json['uri'] as String?,
       order: (json['order'] as num?)?.toInt(),
     );
@@ -21,7 +21,7 @@ Map<String, dynamic> _$QuestionsResponseToJson(QuestionsResponse instance) =>
       'id': instance.id,
       'title': instance.title,
       'subtitle': instance.subtitle,
-      'image_path': instance.imagePath,
+      'image_uri': instance.imagePath,
       'uri': instance.uri,
       'order': instance.order,
     };

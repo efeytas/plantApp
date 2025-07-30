@@ -1,11 +1,16 @@
-class PaywallFeatureModel {
-  final String title;
-  final String description;
-  final String imagePath;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  PaywallFeatureModel({
-    required this.title,
-    required this.description,
-    required this.imagePath,
-  });
+part 'paywall_feature_model.freezed.dart';
+part 'paywall_feature_model.g.dart';
+
+@freezed
+class PaywallFeatureModel with _$PaywallFeatureModel {
+  const factory PaywallFeatureModel({
+    required String title,
+    required String description,
+    required String imagePath,
+  }) = _PaywallFeatureModel;
+
+  factory PaywallFeatureModel.fromJson(Map<String, dynamic> json) =>
+      _$PaywallFeatureModelFromJson(json);
 }

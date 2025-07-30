@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plantapp/core/locale_keys.g.dart';
 import 'package:plantapp/features/home/blocs/home_bloc.dart';
 import 'package:plantapp/features/home/blocs/home_event.dart';
+import 'package:plantapp/features/home/blocs/home_state.dart';
+import 'package:plantapp/features/home/ui/widgets/questions_widget.dart';
 import 'package:plantapp/shared/theme/color_schemes.dart';
 import 'package:plantapp/shared/theme/custom_text_style.dart';
 import 'package:plantapp/shared/utils/image_constant.dart';
@@ -32,10 +34,7 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: _homeView(context),
-    );
+    return Scaffold(backgroundColor: Colors.white, body: _homeView(context));
   }
 
   Widget _homeView(BuildContext context) {
@@ -46,7 +45,13 @@ class _HomeView extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: [_homeHeader(context), _paywallButton(context)],
+                children: [
+                  _homeHeader(context),
+                  SizedBox(height: 24.v),
+                  _paywallButton(context),
+                  SizedBox(height: 24.v),
+                  _questionWidget(context),
+                ],
               ),
             ),
           ),
@@ -134,7 +139,7 @@ class _HomeView extends StatelessWidget {
         context.read<HomeBloc>().add(PaywallVisibilityToggled(true));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.h, vertical: 16.v),
+        margin: EdgeInsets.symmetric(horizontal: 20.h),
         padding: EdgeInsets.symmetric(vertical: 12.v, horizontal: 16.h),
         decoration: BoxDecoration(
           color: Color(0xFF24201A),
@@ -142,8 +147,13 @@ class _HomeView extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomImageView(imagePath: ImageConstant.icMailNotification.tr()),
+            CustomImageView(
+              imagePath: ImageConstant.icMailNotification.tr(),
+              height: 40.v,
+              width: 40.h,
+            ),
             SizedBox(width: 8.h),
             Expanded(
               child: Column(
@@ -154,7 +164,7 @@ class _HomeView extends StatelessWidget {
                     style: CustomTextStyle.titleMedium.copyWith(
                       color: Colors.white,
                       fontSize: 16.v,
-                      fontWeight : FontWeight.w700,
+                      fontWeight: FontWeight.w700,
                     ),
                     gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
@@ -186,6 +196,37 @@ class _HomeView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _questionWidget(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              if (state.questions.isEmpty) {
+                return Text("LocaleKeys.home_no_questions.tr()");
+              }
+              return SizedBox(
+                height: 170.v,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: state.questions.length,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) => SizedBox(width: 10.h),
+                  itemBuilder: (context, index) {
+                    final question = state.questions[index];
+                    return QuestionsWidget(questionsResponse: question);
+                  },
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

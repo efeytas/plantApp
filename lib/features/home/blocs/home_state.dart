@@ -1,71 +1,48 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:plantapp/core/locale_keys.g.dart';
 import 'package:plantapp/features/home/models/paywall_feature_model.dart';
+import 'package:plantapp/features/home/models/response/categories_response.dart';
+import 'package:plantapp/features/home/models/response/questions_response.dart';
 import 'package:plantapp/features/home/models/subscription_option_model.dart';
-import 'package:plantapp/shared/utils/image_constant.dart';
+
+enum HomeStatus { initial, loading, success, failure }
 
 class HomeState {
+  final HomeStatus status;
   final List<PaywallFeatureModel> paywallFeatures;
   final List<SubscriptionOptionModel> subscriptionOptions;
   final bool isVisiblePaywall;
+  final String? errorMessage;
+  final List<QuestionsResponse> questions;
+  final CategoriesResponse? categories;
 
   HomeState({
-    required this.paywallFeatures,
-    required this.subscriptionOptions,
+    this.status = HomeStatus.initial,
+    this.paywallFeatures = const [],
+    this.subscriptionOptions = const [],
     this.isVisiblePaywall = true,
+    this.errorMessage,
+    this.questions = const [],
+    this.categories,
   });
 
   HomeState copyWith({
+    HomeStatus? status,
     List<PaywallFeatureModel>? paywallFeatures,
     List<SubscriptionOptionModel>? subscriptionOptions,
     bool? isVisiblePaywall,
+    String? errorMessage,
+    List<QuestionsResponse>? questions,
+    CategoriesResponse? categories,
   }) {
     return HomeState(
+      status: status ?? this.status,
       paywallFeatures: paywallFeatures ?? this.paywallFeatures,
       subscriptionOptions: subscriptionOptions ?? this.subscriptionOptions,
       isVisiblePaywall: isVisiblePaywall ?? this.isVisiblePaywall,
+      errorMessage: errorMessage ?? this.errorMessage,
+      questions: questions ?? this.questions,
+      categories: categories ?? this.categories,
     );
   }
 
-  factory HomeState.initial() {
-    return HomeState(
-      paywallFeatures: [
-        PaywallFeatureModel(
-          title: LocaleKeys.paywall_unlimited.tr(),
-          description: LocaleKeys.paywall_plant_identify.tr(),
-          imagePath: ImageConstant.icScanner,
-        ),
-        PaywallFeatureModel(
-          title: LocaleKeys.paywall_faster.tr(),
-          description: LocaleKeys.paywall_process.tr(),
-          imagePath: ImageConstant.icSpeedoMeter,
-        ),
-        PaywallFeatureModel(
-          title: LocaleKeys.paywall_faster.tr(),
-          description: LocaleKeys.paywall_process.tr(),
-          imagePath: ImageConstant.icSpeedoMeter,
-        ),
-        PaywallFeatureModel(
-          title: LocaleKeys.paywall_faster.tr(),
-          description: LocaleKeys.paywall_process.tr(),
-          imagePath: ImageConstant.icSpeedoMeter,
-        ),
-      ],
-      subscriptionOptions: [
-        SubscriptionOptionModel(
-          title: LocaleKeys.paywall_one_month.tr(),
-          description: LocaleKeys.paywall_one_month_price.tr(),
-          isSelected: false,
-          isPromoted: false,
-        ),
-        SubscriptionOptionModel(
-          title: LocaleKeys.paywall_one_year.tr(),
-          description: LocaleKeys.paywall_one_year_price.tr(),
-          isSelected: true,
-          isPromoted: true,
-          promotionText: LocaleKeys.paywall_save_fifty.tr(),
-        ),
-      ],
-    );
-  }
+  factory HomeState.initial() => HomeState();
 }

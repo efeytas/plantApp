@@ -8,7 +8,7 @@ class QuestionsResponse {
   int? id;
   String? title;
   String? subtitle;
-  @JsonKey(name: 'image_path')
+  @JsonKey(name: 'image_uri')
   String? imagePath;
   String? uri;
   int? order;
