@@ -34,7 +34,9 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white, body: _homeView(context));
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white, body: _homeView(context));
   }
 
   Widget _homeView(BuildContext context) {

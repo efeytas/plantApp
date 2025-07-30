@@ -24,6 +24,7 @@ class _PaywallPageState extends State<PaywallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: PrimaryColors().darkGreenBackground,
       body: Stack(
         children: [
