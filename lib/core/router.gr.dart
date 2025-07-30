@@ -27,6 +27,22 @@ class GetStartedRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HomeView]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+    : super(HomeRoute.name, initialChildren: children);
+
+  static const String name = 'HomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeView();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingView]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
@@ -38,22 +54,6 @@ class OnboardingRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const OnboardingView();
-    },
-  );
-}
-
-/// generated route for
-/// [PaywallView]
-class PaywallRoute extends PageRouteInfo<void> {
-  const PaywallRoute({List<PageRouteInfo>? children})
-    : super(PaywallRoute.name, initialChildren: children);
-
-  static const String name = 'PaywallRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const PaywallView();
     },
   );
 }

@@ -12,4 +12,5 @@ class PrimaryColors {
   Color get accentOrange => const Color(0xFFFFA726);
   Color get accentPurple => const Color(0xFF9575CD);
   Color get darkGreenBackground => const Color(0xFF0E1A15);
+  Color get borderColor => const Color(0xFF28AF6E);
 }

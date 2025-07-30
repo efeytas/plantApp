@@ -1,0 +1,11 @@
+class PaywallFeatureModel {
+  final String title;
+  final String description;
+  final String imagePath;
+
+  PaywallFeatureModel({
+    required this.title,
+    required this.description,
+    required this.imagePath,
+  });
+}

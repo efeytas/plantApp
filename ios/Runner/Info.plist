@@ -23,7 +23,7 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
-		<string>nb</string>
+		<string>tr</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Used to debug and communicate over the local network</string>

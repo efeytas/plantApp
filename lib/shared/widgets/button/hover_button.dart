@@ -23,11 +23,10 @@ class HoverButton extends StatelessWidget {
               text: text,
               isLoading: state is ButtonHover || state is ButtonInProgress,
               onPressed: () {
+                context.read<ButtonBloc>().add(StartLoading());
+
                 onPressed?.call().then((_) {
-                  context.read<ButtonBloc>().add(StartLoading());
-                  if (state is ButtonHover) {
-                    context.read<ButtonBloc>().add(EndLoading());
-                  }
+                  context.read<ButtonBloc>().add(EndLoading());
                 });
               },
             ),

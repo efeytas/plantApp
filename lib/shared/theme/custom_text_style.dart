@@ -17,18 +17,30 @@ class CustomTextStyle {
     letterSpacing: 0,
   );
 
-  static get bodySmall => theme.textTheme.bodySmall?.roboto.copyWith(
-    height: 1.5
-  );
+  static get bodySmall =>
+      theme.textTheme.bodySmall?.roboto.copyWith(height: 1.5);
 
-  static get boldHeadline => theme.textTheme.titleLarge?.roboto.copyWith(
-    fontWeight: FontWeight.w500,
-  );
+  static get boldHeadline =>
+      theme.textTheme.titleLarge?.roboto.copyWith(fontWeight: FontWeight.w500);
 
-  static get extraboldHeadline => theme.textTheme.titleLarge?.roboto.copyWith(
-    fontWeight: FontWeight.w800,
-  );
+  static get extraboldHeadline =>
+      theme.textTheme.titleLarge?.roboto.copyWith(fontWeight: FontWeight.w800);
 
+  static get lightHeadline =>
+      theme.textTheme.titleLarge?.roboto.copyWith(fontWeight: FontWeight.w300);
+
+  static get lightTitleMedium =>
+      theme.textTheme.titleMedium?.roboto.copyWith(fontWeight: FontWeight.w300);
+
+  static get titleMedium =>
+      theme.textTheme.titleMedium?.roboto.copyWith(fontWeight: FontWeight.w500);
+
+  static get informationText =>
+      theme.textTheme.bodySmall?.roboto.copyWith(
+        fontSize: 9.fSize,
+        color: Colors.white.withValues(alpha: 0.7),
+        fontWeight: FontWeight.w300,
+      );
 }
 
 extension on TextStyle {

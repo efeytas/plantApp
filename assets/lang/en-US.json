@@ -11,8 +11,38 @@
         "second_page_pre_text" : "Get plant",
         "second_page_underlined_text" : "care guided"
     },
+    "paywall" : {
+        "premium" : "Premium",
+        "access_all" : "Access all features",
+        "unlimited" : "Unlimited",
+        "plant_identify" : "Plant Identify",
+        "process" : "Process",
+        "faster" : "Faster",
+        "one_month" : "1 Month",
+        "one_month_price" : "$2.99/month, auto renewable",
+        "one_year" : "1 Year",
+        "one_year_price" : "First 3 days free, then $529,99/year",
+        "save_fifty" : "Save 50%",
+        "try_3_days_free" : "Try free for 3 days",
+        "3_day_desc" : "After the 3-day free trial period you’ll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable",
+        "terms_and_conditions" : "Terms  •  Privacy  •  Restore"
+
+    },
     "buttons" : {
         "getStarted": "Get Started",
         "continue": "Continue"
+    },
+    "home" : {
+        "welcome" : "Hi, plant lover!",
+        "good_afternoon" : "Good afternoon! ⛅",
+        "search_plant" : "Search for plants",
+        "free_premium" : "FREE Premium Available",
+        "upgrade_account" : "Tap to upgrade your account!"
+    },
+    "tabs" : {
+        "home" : "Home",
+        "diagnose" : "Diagnose",
+        "my_garden" : "My Garden",
+        "profile" : "Profile"
     }
 }
