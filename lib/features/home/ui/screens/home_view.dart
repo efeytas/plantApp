@@ -60,12 +60,9 @@ class _HomeViewStateInner extends State<_HomeView> {
           child: NotificationListener<ScrollNotification>(
             onNotification: (scrollInfo) {
               final isBottom = scrollInfo.metrics.axis == Axis.vertical && scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200;
-          
               if (isBottom && !isFetching && state.categoriesStatus != ServiceStatus.fetchingMore) {
                 isFetching = true;
-          
                 context.read<HomeBloc>().add(FetchMoreCategories(currentPage: currentPage, pageSize: pageSize));
-          
                 Future.delayed(const Duration(milliseconds: 1500), () {
                   if (mounted) {
                     setState(() {
@@ -74,7 +71,6 @@ class _HomeViewStateInner extends State<_HomeView> {
                   }
                 });
               }
-          
               return false;
             },
             child: SingleChildScrollView(

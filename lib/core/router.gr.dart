@@ -11,6 +11,81 @@
 part of 'router.dart';
 
 /// generated route for
+/// [CustomWebView]
+class CustomWebRoute extends PageRouteInfo<CustomWebRouteArgs> {
+  CustomWebRoute({
+    Key? key,
+    required String pageTitle,
+    String? url,
+    bool? enableGestures = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+         CustomWebRoute.name,
+         args: CustomWebRouteArgs(
+           key: key,
+           pageTitle: pageTitle,
+           url: url,
+           enableGestures: enableGestures,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'CustomWebRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CustomWebRouteArgs>();
+      return CustomWebView(
+        key: args.key,
+        pageTitle: args.pageTitle,
+        url: args.url,
+        enableGestures: args.enableGestures,
+      );
+    },
+  );
+}
+
+class CustomWebRouteArgs {
+  const CustomWebRouteArgs({
+    this.key,
+    required this.pageTitle,
+    this.url,
+    this.enableGestures = false,
+  });
+
+  final Key? key;
+
+  final String pageTitle;
+
+  final String? url;
+
+  final bool? enableGestures;
+
+  @override
+  String toString() {
+    return 'CustomWebRouteArgs{key: $key, pageTitle: $pageTitle, url: $url, enableGestures: $enableGestures}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CustomWebRouteArgs) return false;
+    return key == other.key &&
+        pageTitle == other.pageTitle &&
+        url == other.url &&
+        enableGestures == other.enableGestures;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      pageTitle.hashCode ^
+      url.hashCode ^
+      enableGestures.hashCode;
+}
+
+/// generated route for
 /// [DiagnoseView]
 class DiagnoseRoute extends PageRouteInfo<void> {
   const DiagnoseRoute({List<PageRouteInfo>? children})

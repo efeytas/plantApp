@@ -21,6 +21,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleLocalizations</key>
+	<key>NSAppTransportSecurity</key>
+	<key>NSAllowsArbitraryLoads</key>
+
 	<array>
 		<string>en</string>
 		<string>tr</string>
