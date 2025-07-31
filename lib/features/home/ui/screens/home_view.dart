@@ -182,7 +182,7 @@ class _HomeViewStateInner extends State<_HomeView> {
           BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
               if (state.questions.isEmpty) {
-                return Text("LocaleKeys.home_no_questions.tr()");
+                return SizedBox.shrink();
               }
               return SizedBox(
                 height: 170.v,
@@ -208,7 +208,7 @@ class _HomeViewStateInner extends State<_HomeView> {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.categories?.data.isEmpty ?? true) {
-          return Text("No categories available");
+          return SizedBox.shrink();
         }
         return Container(
           padding: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 16.v),
