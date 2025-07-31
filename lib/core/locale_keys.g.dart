@@ -3,9 +3,12 @@
 // ignore_for_file: constant_identifier_names
 
 abstract class  LocaleKeys {
-  static const getStarted_firstPageTitle = 'getStarted.firstPageTitle';
+  static const getStarted_firstPageTitle_first = 'getStarted.firstPageTitle_first';
+  static const getStarted_firstPageTitle_second = 'getStarted.firstPageTitle_second';
   static const getStarted_firstPageSubTitle = 'getStarted.firstPageSubTitle';
   static const getStarted_legal_text = 'getStarted.legal_text';
+  static const getStarted_terms_of_use = 'getStarted.terms_of_use';
+  static const getStarted_privacy_policy = 'getStarted.privacy_policy';
   static const getStarted = 'getStarted';
   static const onboarding_first_page_pre_text = 'onboarding.first_page_pre_text';
   static const onboarding_first_page_underlined_text = 'onboarding.first_page_underlined_text';

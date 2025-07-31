@@ -19,52 +19,60 @@ class GetStartedView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          CustomImageView(
-            imagePath: ImageConstant.getStaredBackground,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+          CustomImageView(imagePath: ImageConstant.getStaredBackground, fit: BoxFit.cover, width: double.infinity, height: double.infinity),
           Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top,
-              bottom: MediaQuery.of(context).padding.bottom,
-            ),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, bottom: MediaQuery.of(context).padding.bottom),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
-                  child: Text(
-                    LocaleKeys.getStarted_firstPageTitle.tr(),
-                    style: CustomTextStyle.headline,
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Welcome to ',
+                      style: CustomTextStyle.headline,
+                      children: [TextSpan(text: 'PlantApp', style: CustomTextStyle.headline.copyWith(fontWeight: FontWeight.bold))],
+                    ),
                   ),
                 ),
                 SizedBox(height: 8.v),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
-                  child: Text(
-                    LocaleKeys.getStarted_firstPageSubTitle.tr(),
-                    style: CustomTextStyle.bodyMedium,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: Text(LocaleKeys.getStarted_firstPageSubTitle.tr(), style: CustomTextStyle.bodyMedium),
                 ),
                 SizedBox(height: 24.v),
-                Expanded(
-                  child: CustomImageView(imagePath: ImageConstant.imgGetStarted),
-                ),
+                Expanded(child: CustomImageView(imagePath: ImageConstant.imgGetStarted)),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 20.h),
-                  child: HoverButton(text: LocaleKeys.buttons_getStarted.tr(), onPressed: () async {
-                    router.pushAndPopUntil(OnboardingRoute(), predicate: (route) => false);
-                  },),
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: HoverButton(
+                    text: LocaleKeys.buttons_getStarted.tr(),
+                    onPressed: () async {
+                      router.pushAndPopUntil(OnboardingRoute(), predicate: (route) => false);
+                    },
+                  ),
                 ),
                 SizedBox(height: 16.v),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 56.h),
-                  child: Text(
-                    LocaleKeys.getStarted_legal_text.tr(),
+                  child: Text.rich(
+                    TextSpan(
+                      text: LocaleKeys.getStarted_legal_text.tr(),
+                      style: CustomTextStyle.bodySmall,
+                      children: [
+                        const TextSpan(text: '\n'),
+                        TextSpan(
+                          text: LocaleKeys.getStarted_terms_of_use.tr(),
+                          style: CustomTextStyle.bodySmall?.copyWith(decoration: TextDecoration.underline),
+                        ),
+
+                        TextSpan(text: " & ", style: CustomTextStyle.bodySmall),
+                        TextSpan(
+                          text: LocaleKeys.getStarted_privacy_policy.tr(),
+                          style: CustomTextStyle.bodySmall?.copyWith(decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
                     textAlign: TextAlign.center,
-                    style: CustomTextStyle.bodySmall
                   ),
                 ),
               ],

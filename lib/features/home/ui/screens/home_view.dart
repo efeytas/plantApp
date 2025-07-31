@@ -43,11 +43,7 @@ class _HomeViewStateInner extends State<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      body: _homeView(context),
-    );
+    return Scaffold(resizeToAvoidBottomInset: true, backgroundColor: Colors.white, body: _homeView(context));
   }
 
   Widget _homeView(BuildContext context) {
@@ -59,22 +55,12 @@ class _HomeViewStateInner extends State<_HomeView> {
         ? const Center(child: CircularProgressIndicator.adaptive())
         : NotificationListener<ScrollNotification>(
           onNotification: (scrollInfo) {
-            final isBottom =
-                scrollInfo.metrics.axis == Axis.vertical &&
-                scrollInfo.metrics.pixels >=
-                    scrollInfo.metrics.maxScrollExtent - 200;
+            final isBottom = scrollInfo.metrics.axis == Axis.vertical && scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200;
 
-            if (isBottom &&
-                !isFetching &&
-                state.categoriesStatus != ServiceStatus.fetchingMore) {
+            if (isBottom && !isFetching && state.categoriesStatus != ServiceStatus.fetchingMore) {
               isFetching = true;
 
-              context.read<HomeBloc>().add(
-                FetchMoreCategories(
-                  currentPage: currentPage,
-                  pageSize: pageSize,
-                ),
-              );
+              context.read<HomeBloc>().add(FetchMoreCategories(currentPage: currentPage, pageSize: pageSize));
 
               Future.delayed(const Duration(milliseconds: 1500), () {
                 if (mounted) {
@@ -89,10 +75,7 @@ class _HomeViewStateInner extends State<_HomeView> {
           },
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top,
-                bottom: MediaQuery.of(context).padding.bottom,
-              ),
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, bottom: MediaQuery.of(context).padding.bottom),
               child: Column(
                 children: [
                   _homeHeader(context),
@@ -103,10 +86,7 @@ class _HomeViewStateInner extends State<_HomeView> {
                   SizedBox(height: 24.v),
                   _buildCategories(),
                   if (state.categoriesStatus == ServiceStatus.fetchingMore)
-                    const Padding(
-                      padding: EdgeInsets.all(16),
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
+                    const Padding(padding: EdgeInsets.all(16), child: CircularProgressIndicator.adaptive()),
                 ],
               ),
             ),
@@ -117,66 +97,31 @@ class _HomeViewStateInner extends State<_HomeView> {
   Widget _homeHeader(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
-          left: -20.v,
-          bottom: -20.v,
-          child: CustomImageView(imagePath: ImageConstant.imgHomeLeftLeaf),
-        ),
-        Positioned(
-          right: -20.v,
-          bottom: -20.v,
-          child: CustomImageView(imagePath: ImageConstant.imgHomeRightLeaf),
-        ),
+        Positioned(left: -20.v, bottom: -20.v, child: CustomImageView(imagePath: ImageConstant.imgHomeLeftLeaf)),
+        Positioned(right: -20.v, bottom: -20.v, child: CustomImageView(imagePath: ImageConstant.imgHomeRightLeaf)),
         Padding(
           padding: EdgeInsets.only(left: 20.h, right: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                LocaleKeys.home_welcome.tr(),
-                style: CustomTextStyle.titleMedium,
-              ),
-              Text(
-                LocaleKeys.home_good_afternoon.tr(),
-                style: CustomTextStyle.titleLarge?.copyWith(
-                  color: Colors.black.withValues(alpha: 0.7),
-                ),
-              ),
+              Text(LocaleKeys.home_welcome.tr(), style: CustomTextStyle.titleMedium),
+              Text(LocaleKeys.home_good_afternoon.tr(), style: CustomTextStyle.titleLarge?.copyWith(color: Colors.black.withValues(alpha: 0.7))),
               SizedBox(height: 16.v),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: LocaleKeys.home_search_plant.tr(),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Color(0xFFABABAB),
-                    size: 25.v,
-                  ),
+                  prefixIcon: Icon(Icons.search, color: Color(0xFFABABAB), size: 25.v),
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 16,
-                    horizontal: 20,
-                  ),
+                  contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(
-                      color: Color(0xFF3C3C43).withValues(alpha: 0.25),
-                      width: 0.2,
-                    ),
+                    borderSide: BorderSide(color: Color(0xFF3C3C43).withValues(alpha: 0.25), width: 0.2),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey, width: 1.5),
-                  ),
-                  hintStyle: CustomTextStyle.bodyMedium?.copyWith(
-                    fontSize: 14.v,
-                    color: Color(0xFFAFAFAF),
-                  ),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey, width: 1.5)),
+                  hintStyle: CustomTextStyle.bodyMedium?.copyWith(fontSize: 14.v, color: Color(0xFFAFAFAF)),
                 ),
-                style: CustomTextStyle.bodyMedium?.copyWith(
-                  fontSize: 14.v,
-                  color: ColorSchemes.primaryColorScheme.onSurface,
-                ),
+                style: CustomTextStyle.bodyMedium?.copyWith(fontSize: 14.v, color: ColorSchemes.primaryColorScheme.onSurface),
                 cursorColor: ColorSchemes.primaryColorScheme.onSurface,
               ),
               SizedBox(height: 16.v),
@@ -195,19 +140,12 @@ class _HomeViewStateInner extends State<_HomeView> {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.h),
         padding: EdgeInsets.symmetric(vertical: 12.v, horizontal: 16.h),
-        decoration: BoxDecoration(
-          color: Color(0xFF24201A),
-          borderRadius: BorderRadius.circular(12),
-        ),
+        decoration: BoxDecoration(color: Color(0xFF24201A), borderRadius: BorderRadius.circular(12)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomImageView(
-              imagePath: ImageConstant.icMailNotification.tr(),
-              height: 40.v,
-              width: 40.h,
-            ),
+            CustomImageView(imagePath: ImageConstant.icMailNotification.tr(), height: 40.v, width: 40.h),
             SizedBox(width: 8.h),
             Expanded(
               child: Column(
@@ -215,11 +153,7 @@ class _HomeViewStateInner extends State<_HomeView> {
                 children: [
                   GradientText(
                     LocaleKeys.home_free_premium.tr(),
-                    style: CustomTextStyle.titleMedium.copyWith(
-                      color: Colors.white,
-                      fontSize: 16.v,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: CustomTextStyle.titleMedium.copyWith(color: Colors.white, fontSize: 16.v, fontWeight: FontWeight.w700),
                     gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
@@ -229,10 +163,7 @@ class _HomeViewStateInner extends State<_HomeView> {
                   ),
                   GradientText(
                     LocaleKeys.home_upgrade_account.tr(),
-                    style: CustomTextStyle.bodyMedium.copyWith(
-                      color: Colors.white,
-                      fontSize: 13.v,
-                    ),
+                    style: CustomTextStyle.bodyMedium.copyWith(color: Colors.white, fontSize: 13.v),
                     gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
@@ -243,11 +174,7 @@ class _HomeViewStateInner extends State<_HomeView> {
                 ],
               ),
             ),
-            CustomImageView(
-              imagePath: ImageConstant.icRightArrow,
-              height: 20.v,
-              width: 20.v,
-            ),
+            CustomImageView(imagePath: ImageConstant.icRightArrow, height: 20.v, width: 20.v),
           ],
         ),
       ),
@@ -297,11 +224,7 @@ class _HomeViewStateInner extends State<_HomeView> {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16.h,
-              mainAxisSpacing: 16.v,
-            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 16.h, mainAxisSpacing: 16.v),
             itemCount: state.categories?.data.length ?? 0,
             itemBuilder: (context, index) {
               final category = state.categories!.data[index];
@@ -310,9 +233,7 @@ class _HomeViewStateInner extends State<_HomeView> {
               } else {
                 return Visibility(
                   visible: state.categoriesStatus == ServiceStatus.fetchingMore,
-                  child: const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  ),
+                  child: const Center(child: CircularProgressIndicator.adaptive()),
                 );
               }
             },
