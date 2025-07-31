@@ -10,4 +10,4 @@
 
 3. Configuration in `main.dart`:
 
-Note: It is recommended to run this project in "dev release" mode for optimal performance testing and debugging.
+Note: It is recommended to run this project in "dev release" mode for optimal performance testing and debugging for Android.

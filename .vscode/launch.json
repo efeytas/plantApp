@@ -9,6 +9,15 @@
             "args": [
             ]
         },
+
+        {
+            "name": "Dev Profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+            ]
+        },
         {
             "name": "Dev Release",
             "request": "launch",
