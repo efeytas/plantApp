@@ -10,7 +10,6 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
 
     on<PageChanged>((event, emit) async {
       if (event.pageIndex == 2) {
-        await prefsService.setFirstTimeFalse(); // kullanıcı tamamladıysa işaretle
         router.pushAndPopUntil(
           const HomeTabRoute(children: []),
           predicate: (route) => false,

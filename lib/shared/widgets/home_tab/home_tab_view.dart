@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plantapp/core/app_state.dart';
 import 'package:plantapp/core/router.dart';
 import 'package:plantapp/features/home/blocs/home_bloc.dart';
 import 'package:plantapp/features/home/ui/widgets/paywall_page.dart';
@@ -46,7 +47,7 @@ class _HomeTabViewState extends State<HomeTabView> {
                       ),
                       AnimatedSlide(
                         offset:
-                            context.watch<HomeBloc>().state.isVisiblePaywall
+                            context.watch<HomeBloc>().state.isVisiblePaywall && context.watch<HomeBloc>().state.status != ServiceStatus.initial
                                 ? Offset(0, 0)
                                 : Offset(0, 1),
                         duration: const Duration(milliseconds: 500),

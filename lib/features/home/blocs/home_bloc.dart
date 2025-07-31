@@ -31,6 +31,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else {
       emit(state.copyWith(isVisiblePaywall: false));
     }
+    prefsService.setFirstTimeFalse(); 
     try {
       final features = [
         PaywallFeatureModel(
