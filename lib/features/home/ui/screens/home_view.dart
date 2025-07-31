@@ -52,17 +52,23 @@ class _HomeViewStateInner extends State<_HomeView> {
     final focusNode = FocusNode();
 
     if (state.status == ServiceStatus.failure) {
-      return Center(
+      return Container(
+        padding: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 16.v),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-             LocaleKeys.error_handling_home_page_error.tr(),
+              LocaleKeys.error_handling_home_page_error.tr(),
               style: CustomTextStyle.titleMedium?.copyWith(color: ColorSchemes.primaryColorScheme.error),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 16.v),
-            HoverButton(text: LocaleKeys.error_handling_retry, onPressed: () async {
-              context.read<HomeBloc>().add(LoadHomeData());
-            }),
+            HoverButton(
+              text: LocaleKeys.error_handling_retry.tr(),
+              onPressed: () async {
+                context.read<HomeBloc>().add(LoadHomeData());
+              },
+            ),
           ],
         ),
       );

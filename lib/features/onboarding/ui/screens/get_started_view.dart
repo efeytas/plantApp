@@ -29,9 +29,9 @@ class GetStartedView extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20.h),
                   child: Text.rich(
                     TextSpan(
-                      text: 'Welcome to ',
+                      text: LocaleKeys.getStarted_firstPageTitle_first.tr(),
                       style: CustomTextStyle.headline,
-                      children: [TextSpan(text: 'PlantApp', style: CustomTextStyle.headline.copyWith(fontWeight: FontWeight.bold))],
+                      children: [TextSpan(text: LocaleKeys.getStarted_firstPageTitle_second.tr(), style: CustomTextStyle.headline.copyWith(fontWeight: FontWeight.bold))],
                     ),
                   ),
                 ),

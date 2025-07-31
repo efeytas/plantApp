@@ -66,28 +66,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       ];
 
-      emit(
-        state.copyWith(paywallFeatures: features, subscriptionOptions: options),
-      );
-      final questions = await homeService.fetchQuestions();
+      emit(state.copyWith(
+        paywallFeatures: features,
+        subscriptionOptions: options,
+      ));
 
+      final questions = await homeService.fetchQuestions();
       final categories = await homeService.fetchCategories(1, 25);
 
-      emit(
-        state.copyWith(
-          status: ServiceStatus.success,
-          questions: questions,
-          categories: categories,
-        ),
-      );
-    } catch (e) {
+      emit(state.copyWith(
+        status: ServiceStatus.success,
+        questions: questions,
+        categories: categories,
+      ));
+    } catch (e, stack) {
       debugPrint("Error loading home data: $e");
-      emit(
-        state.copyWith(
-          status: ServiceStatus.failure,
-          errorMessage: e.toString(),
-        ),
-      );
+      debugPrintStack(stackTrace: stack);
+      emit(state.copyWith(
+        status: ServiceStatus.failure,
+        errorMessage: "Failed to load home data: $e",
+      ));
     }
   }
 
@@ -101,10 +99,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     }
 
-    // Listeyi yeniden oluşturmak, UI'ı tetiklemek için gerekli olabilir
-    emit(
-      state.copyWith(subscriptionOptions: List.from(state.subscriptionOptions)),
-    );
+    emit(state.copyWith(
+      subscriptionOptions: List.from(state.subscriptionOptions),
+    ));
   }
 
   void _onPaywallVisibilityToggled(
@@ -123,44 +120,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(categoriesStatus: ServiceStatus.fetchingMore));
 
     try {
-      /*
-      // This is a mock data, so I am not checking the page count
-      // In a real application, you would check if the current page is the last page
-
-      
-      if( state.categories?.meta.pagination.pageCount == event.currentPage + 1) {
-        emit(state.copyWith(categoriesStatus: ServiceStatus.success));
-        return;
-      }
-      */
       final newCategories = await homeService.fetchCategories(
         event.currentPage + 1,
         event.pageSize,
       );
 
+      if (newCategories.data.isEmpty) {
+        emit(state.copyWith(categoriesStatus: ServiceStatus.success));
+        return;
+      }
 
-      final updatedCategories =
-          state.categories?.copyWith(
+      final updatedCategories = state.categories?.copyWith(
             categories: [...?state.categories?.data, ...newCategories.data],
-            //The correct approach here would be to use the page from the returned data, but since mock data is being used, I directly set it like this
             currentPage: event.currentPage + 1,
             totalPages: newCategories.meta.pagination.pageCount,
           ) ??
           newCategories;
-      emit(
-        state.copyWith(
-          categories: updatedCategories,
-          categoriesStatus: ServiceStatus.success,
-        ),
-      );
-    } catch (e) {
+
+      emit(state.copyWith(
+        categories: updatedCategories,
+        categoriesStatus: ServiceStatus.success,
+      ));
+    } catch (e, stack) {
       debugPrint("Error fetching more categories: $e");
-      emit(
-        state.copyWith(
-          categoriesStatus: ServiceStatus.failure,
-          errorMessage: e.toString(),
-        ),
-      );
+      debugPrintStack(stackTrace: stack);
+      emit(state.copyWith(
+        categoriesStatus: ServiceStatus.failure,
+        errorMessage: "Failed to fetch more categories: $e",
+      ));
     }
   }
 }
+
+

@@ -51,7 +51,7 @@ class _HomeTabViewState extends State<HomeTabView> {
                                 : Offset(0, 1),
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeOut,
-                        child: context.watch<HomeBloc>().state.isVisiblePaywall ?  PaywallPage() : const SizedBox.shrink(),
+                        child: PaywallPage(),
                       ),
                     ],
                   ),

@@ -26,59 +26,61 @@ class _PaywallPageState extends State<PaywallPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: PrimaryColors().darkGreenBackground,
-      body: Stack(
-        children: [
-          CustomImageView(
-            width: double.infinity,
-            height: 480.v,
-            imagePath: ImageConstant.paywallBackground,
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: 280.v,
-              bottom: MediaQuery.of(context).padding.bottom,
-              right: 20.h,
-              left: 20.h,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            CustomImageView(
+              width: double.infinity,
+              height: 480.v,
+              imagePath: ImageConstant.paywallBackground,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CustomImageView(
-                      imagePath: ImageConstant.logoPlantApp,
-                      height: 32.v,
-                      width: 130.h,
-                    ),
-                    SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        LocaleKeys.paywall_premium.tr(),
-                        style: CustomTextStyle.lightHeadline.copyWith(
-                          color: Colors.white,
+            Padding(
+              padding: EdgeInsets.only(
+                top: 280.v,
+                bottom: MediaQuery.of(context).padding.bottom,
+                right: 20.h,
+                left: 20.h,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CustomImageView(
+                        imagePath: ImageConstant.logoPlantApp,
+                        height: 32.v,
+                        width: 130.h,
+                      ),
+                      SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          LocaleKeys.paywall_premium.tr(),
+                          style: CustomTextStyle.lightHeadline.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Text(
-                  LocaleKeys.paywall_access_all.tr(),
-                  style: CustomTextStyle.lightTitleMedium.copyWith(
-                    color: Colors.white.withValues(alpha: 0.7),
+                    ],
                   ),
-                ),
-                SizedBox(height: 12.v),
-                _paywallFeatures(context),
-                SizedBox(height: 16.v),
-                _paymentOptions(context),
-                SizedBox(height: 16.v),
-                _buttonAndInformationText(context),
-              ],
+                  Text(
+                    LocaleKeys.paywall_access_all.tr(),
+                    style: CustomTextStyle.lightTitleMedium.copyWith(
+                      color: Colors.white.withValues(alpha: 0.7),
+                    ),
+                  ),
+                  SizedBox(height: 12.v),
+                  _paywallFeatures(context),
+                  SizedBox(height: 16.v),
+                  _paymentOptions(context),
+                  SizedBox(height: 16.v),
+                  _buttonAndInformationText(context),
+                ],
+              ),
             ),
-          ),
-          _closeIcon(context),
-        ],
+            _closeIcon(context),
+          ],
+        ),
       ),
     );
   }
