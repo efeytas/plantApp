@@ -26,6 +26,8 @@ class CustomWebView extends StatefulWidget {
 class _CustomWebViewState extends State<CustomWebView> {
   late final WebViewController controller;
   bool isLoading = true;
+  bool hasError = false;
+  String? errorMessage;
 
   @override
   void initState() {
@@ -41,11 +43,20 @@ class _CustomWebViewState extends State<CustomWebView> {
           onPageStarted: (url) {
             setState(() {
               isLoading = true;
+              hasError = false;
+              errorMessage = null;
             });
           },
           onPageFinished: (url) {
             setState(() {
               isLoading = false;
+            });
+          },
+          onWebResourceError: (WebResourceError error) {
+            setState(() {
+              isLoading = false;
+              hasError = true;
+              errorMessage = error.description;
             });
           },
         ),
@@ -62,20 +73,63 @@ class _CustomWebViewState extends State<CustomWebView> {
       appBar: AppBar(title: Text(widget.pageTitle)),
       body: Stack(
         children: [
-          WebViewWidget(
-            controller: controller,
-            gestureRecognizers: widget.enableGestures == true
-                ? {
-                    Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
-                    Factory<HorizontalDragGestureRecognizer>(() => HorizontalDragGestureRecognizer()),
-                  }
-                : {},
-          ),
+          if (hasError)
+            _buildErrorView()
+          else
+            WebViewWidget(
+              controller: controller,
+              gestureRecognizers: widget.enableGestures == true
+                  ? {
+                      Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()),
+                      Factory<HorizontalDragGestureRecognizer>(() => HorizontalDragGestureRecognizer()),
+                    }
+                  : {},
+            ),
           if (isLoading)
             const Center(
               child: CircularProgressIndicator.adaptive(),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildErrorView() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, size: 64, color: Colors.redAccent),
+            const SizedBox(height: 16),
+            Text(
+              "Failed to load page",
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            if (errorMessage != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                errorMessage!,
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+            ],
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  isLoading = true;
+                  hasError = false;
+                  errorMessage = null;
+                });
+                controller.reload();
+              },
+              child: const Text("Retry"),
+            ),
+          ],
+        ),
       ),
     );
   }
