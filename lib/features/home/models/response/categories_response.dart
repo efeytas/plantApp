@@ -13,28 +13,43 @@ class CategoriesResponse {
       _$CategoriesResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoriesResponseToJson(this);
+
+  copyWith({required List<Category> categories, required int currentPage, required int totalPages}) {
+    return CategoriesResponse(
+      data: categories,
+      meta: Meta(
+        pagination: Pagination(
+          page: currentPage,
+          pageSize: meta.pagination.pageSize,
+          pageCount: meta.pagination.pageCount,
+          total: meta.pagination.total,
+        ),
+      ),
+    );
+  }
+
 }
 
 @JsonSerializable()
 class Category {
-  final int id;
-  final String name;
-  final String createdAt;
-  final String updatedAt;
-  final String publishedAt;
-  final String title;
-  final int rank;
-  final ImageModel image;
+  final int? id;
+  final String? name;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? publishedAt;
+  final String? title;
+  final int? rank;
+  final ImageModel? image;
 
   Category({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.publishedAt,
-    required this.title,
-    required this.rank,
-    required this.image,
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+    this.publishedAt,
+    this.title,
+    this.rank,
+    this.image,
   });
   factory Category.fromJson(Map<String, dynamic> json) =>
       _$CategoryFromJson(json);
@@ -44,41 +59,41 @@ class Category {
 
 @JsonSerializable()
 class ImageModel {
-  final int id;
-  final String name;
-  final int width;
-  final int height;
-  final String hash;
-  final String ext;
-  final String mime;
-  final double size;
-  final String url;
+  final int? id;
+  final String? name;
+  final int? width;
+  final int? height;
+  final String? hash;
+  final String? ext;
+  final String? mime;
+  final double? size;
+  final String? url;
   final String? alternativeText;
   final String? caption;
   final String? previewUrl;
-  final String provider;
+  final String? provider;
   @JsonKey(name: 'provider_metadata')
   final String? providerMetada;
-  final String createdAt;
-  final String updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
 
   ImageModel({
-    required this.id,
-    required this.name,
-    required this.width,
-    required this.height,
-    required this.hash,
-    required this.ext,
-    required this.mime,
-    required this.size,
-    required this.url,
-    required this.provider,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.name,
+    this.width,
+    this.height,
+    this.hash,
+    this.ext,
+    this.mime,
+    this.size,
+    this.url,
     this.alternativeText,
     this.caption,
     this.previewUrl,
+    this.provider,
     this.providerMetada,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory ImageModel.fromJson(Map<String, dynamic> json) =>

@@ -86,7 +86,9 @@ class _PaywallPageState extends State<PaywallPage> {
   Widget _buttonAndInformationText(BuildContext context) {
     return Column(
       children: [
-        HoverButton(text: LocaleKeys.paywall_try_3_days_free.tr()),
+        HoverButton(text: LocaleKeys.paywall_try_3_days_free.tr(), 
+        onPressed: () async{
+        }),
         SizedBox(height: 8.v),
         Text(
           LocaleKeys.paywall_3_day_desc.tr(),

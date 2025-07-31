@@ -1,12 +1,12 @@
+import 'package:plantapp/core/app_state.dart';
 import 'package:plantapp/features/home/models/paywall_feature_model.dart';
 import 'package:plantapp/features/home/models/response/categories_response.dart';
 import 'package:plantapp/features/home/models/response/questions_response.dart';
 import 'package:plantapp/features/home/models/subscription_option_model.dart';
 
-enum HomeStatus { initial, loading, success, failure }
-
 class HomeState {
-  final HomeStatus status;
+  final ServiceStatus status;
+  final ServiceStatus categoriesStatus;
   final List<PaywallFeatureModel> paywallFeatures;
   final List<SubscriptionOptionModel> subscriptionOptions;
   final bool isVisiblePaywall;
@@ -15,7 +15,8 @@ class HomeState {
   final CategoriesResponse? categories;
 
   HomeState({
-    this.status = HomeStatus.initial,
+    this.status = ServiceStatus.initial,
+    this.categoriesStatus = ServiceStatus.initial,
     this.paywallFeatures = const [],
     this.subscriptionOptions = const [],
     this.isVisiblePaywall = true,
@@ -25,7 +26,8 @@ class HomeState {
   });
 
   HomeState copyWith({
-    HomeStatus? status,
+    ServiceStatus? status,
+    ServiceStatus? categoriesStatus,
     List<PaywallFeatureModel>? paywallFeatures,
     List<SubscriptionOptionModel>? subscriptionOptions,
     bool? isVisiblePaywall,
@@ -35,6 +37,7 @@ class HomeState {
   }) {
     return HomeState(
       status: status ?? this.status,
+      categoriesStatus: status ?? this.categoriesStatus,
       paywallFeatures: paywallFeatures ?? this.paywallFeatures,
       subscriptionOptions: subscriptionOptions ?? this.subscriptionOptions,
       isVisiblePaywall: isVisiblePaywall ?? this.isVisiblePaywall,

@@ -11,3 +11,11 @@ class PaywallVisibilityToggled extends HomeEvent {
 }
 
 class LoadHomeData extends HomeEvent {}
+
+class FetchMoreCategories extends HomeEvent {
+  final int currentPage;
+  final int pageSize;
+  FetchMoreCategories(
+    {required this.currentPage, required this.pageSize}
+  );
+}

@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plantapp/core/app_state.dart';
 import 'package:plantapp/core/locale_keys.g.dart';
 import 'package:plantapp/features/home/blocs/home_bloc.dart';
 import 'package:plantapp/features/home/blocs/home_event.dart';
 import 'package:plantapp/features/home/blocs/home_state.dart';
+import 'package:plantapp/features/home/ui/widgets/categories_widget.dart';
 import 'package:plantapp/features/home/ui/widgets/questions_widget.dart';
 import 'package:plantapp/shared/theme/color_schemes.dart';
 import 'package:plantapp/shared/theme/custom_text_style.dart';
@@ -29,23 +31,68 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-class _HomeView extends StatelessWidget {
+class _HomeView extends StatefulWidget {
   const _HomeView();
+
+  @override
+  State<_HomeView> createState() => _HomeViewStateInner();
+}
+
+class _HomeViewStateInner extends State<_HomeView> {
+  bool isFetching = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white, body: _homeView(context));
+      backgroundColor: Colors.white,
+      body: _homeView(context),
+    );
   }
 
   Widget _homeView(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      child: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
+    final state = context.watch<HomeBloc>().state;
+    final currentPage = state.categories?.meta.pagination.page ?? 1;
+    final pageSize = state.categories?.meta.pagination.pageSize ?? 25;
+
+    return state.status == ServiceStatus.loading
+        ? const Center(child: CircularProgressIndicator.adaptive())
+        : NotificationListener<ScrollNotification>(
+          onNotification: (scrollInfo) {
+            final isBottom =
+                scrollInfo.metrics.axis == Axis.vertical &&
+                scrollInfo.metrics.pixels >=
+                    scrollInfo.metrics.maxScrollExtent - 200;
+
+            if (isBottom &&
+                !isFetching &&
+                state.categoriesStatus != ServiceStatus.fetchingMore) {
+              isFetching = true;
+
+              context.read<HomeBloc>().add(
+                FetchMoreCategories(
+                  currentPage: currentPage,
+                  pageSize: pageSize,
+                ),
+              );
+
+              Future.delayed(const Duration(milliseconds: 1500), () {
+                if (mounted) {
+                  setState(() {
+                    isFetching = false;
+                  });
+                }
+              });
+            }
+
+            return false;
+          },
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top,
+                bottom: MediaQuery.of(context).padding.bottom,
+              ),
               child: Column(
                 children: [
                   _homeHeader(context),
@@ -53,13 +100,18 @@ class _HomeView extends StatelessWidget {
                   _paywallButton(context),
                   SizedBox(height: 24.v),
                   _questionWidget(context),
+                  SizedBox(height: 24.v),
+                  _buildCategories(),
+                  if (state.categoriesStatus == ServiceStatus.fetchingMore)
+                    const Padding(
+                      padding: EdgeInsets.all(16),
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
                 ],
               ),
             ),
           ),
-        ],
-      ),
-    );
+        );
   }
 
   Widget _homeHeader(BuildContext context) {
@@ -230,6 +282,43 @@ class _HomeView extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildCategories() {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state.categories?.data.isEmpty ?? true) {
+          return Text("No categories available");
+        }
+        return Container(
+          padding: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 16.v),
+          child: GridView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.h,
+              mainAxisSpacing: 16.v,
+            ),
+            itemCount: state.categories?.data.length ?? 0,
+            itemBuilder: (context, index) {
+              final category = state.categories!.data[index];
+              if (index <= state.categories!.data.length) {
+                return CategoriesWidget(category: category);
+              } else {
+                return Visibility(
+                  visible: state.categoriesStatus == ServiceStatus.fetchingMore,
+                  child: const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+                );
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }
