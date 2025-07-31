@@ -1,16 +1,13 @@
-# plantapp
+## 🌐 Language Configuration (Localization)
 
-A new Flutter project.
+1. Localization files are located in:  
+   `assets/translations/`
 
-## Getting Started
+2. Supported locales:
 
-This project is a starting point for a Flutter application.
+   - English (en-US)
+   - Turkish (tr-TR)
 
-A few resources to get you started if this is your first Flutter project:
+3. Configuration in `main.dart`:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Note: It is recommended to run this project in "dev release" mode for optimal performance testing and debugging.
