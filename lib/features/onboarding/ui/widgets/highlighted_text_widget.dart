@@ -64,7 +64,7 @@ class _UnderlinePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = ColorSchemes.primaryColorScheme.onSurface
-      ..strokeWidth = 3
+      ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
 
     final path = Path();
@@ -73,7 +73,7 @@ class _UnderlinePainter extends CustomPainter {
       size.width / 2,
       size.height - offsetY * 8,
       size.width + 10.h,
-      size.height + offsetY * 2,
+      size.height + offsetY * 3,
     );
 
     canvas.drawPath(path, paint);

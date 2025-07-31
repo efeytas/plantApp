@@ -58,7 +58,7 @@ class CustomPrimaryButton extends BaseButton {
                 elevation: WidgetStateProperty.all<double>(12.0),
                 shadowColor: WidgetStateProperty.all<Color>(const Color.fromRGBO(137, 114, 247, 0.20)),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.v))),
-                splashFactory: NoSplash.splashFactory,
+                splashFactory: InkRipple.splashFactory,
               ),
           onPressed: isLoading! ? () {} : onPressed ?? () {},
           child: isLoading!
