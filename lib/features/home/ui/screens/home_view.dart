@@ -13,6 +13,7 @@ import 'package:plantapp/shared/theme/color_schemes.dart';
 import 'package:plantapp/shared/theme/custom_text_style.dart';
 import 'package:plantapp/shared/utils/image_constant.dart';
 import 'package:plantapp/shared/utils/size_utils.dart';
+import 'package:plantapp/shared/widgets/button/hover_button.dart';
 import 'package:plantapp/shared/widgets/custom_image_view.dart';
 import 'package:plantapp/shared/widgets/gradient_text.dart';
 
@@ -49,6 +50,23 @@ class _HomeViewStateInner extends State<_HomeView> {
     final currentPage = state.categories?.meta.pagination.page ?? 1;
     final pageSize = state.categories?.meta.pagination.pageSize ?? 25;
     final focusNode = FocusNode();
+
+    if (state.status == ServiceStatus.failure) {
+      return Center(
+        child: Column(
+          children: [
+            Text(
+             LocaleKeys.error_handling_home_page_error.tr(),
+              style: CustomTextStyle.titleMedium?.copyWith(color: ColorSchemes.primaryColorScheme.error),
+            ),
+            SizedBox(height: 16.v),
+            HoverButton(text: LocaleKeys.error_handling_retry, onPressed: () async {
+              context.read<HomeBloc>().add(LoadHomeData());
+            }),
+          ],
+        ),
+      );
+    }
 
     return state.status == ServiceStatus.loading
         ? const Center(child: CircularProgressIndicator.adaptive())

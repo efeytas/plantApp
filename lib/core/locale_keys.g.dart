@@ -45,5 +45,8 @@ abstract class  LocaleKeys {
   static const tabs_my_garden = 'tabs.my_garden';
   static const tabs_profile = 'tabs.profile';
   static const tabs = 'tabs';
+  static const error_handling_home_page_error = 'error_handling.home_page_error';
+  static const error_handling_retry = 'error_handling.retry';
+  static const error_handling = 'error_handling';
 
 }

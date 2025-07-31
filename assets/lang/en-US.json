@@ -47,5 +47,9 @@
         "diagnose" : "Diagnose",
         "my_garden" : "My Garden",
         "profile" : "Profile"
+    },
+    "error_handling" :{
+        "home_page_error" : "An error occurred while loading the home page. Please try again.",
+        "retry" : "Retry"
     }
 }

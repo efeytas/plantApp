@@ -1,51 +1,55 @@
 {
-    "getStarted" : {
-        "firstPageTitle_first": "Welcome to",
-        "firstPageTitle_second": "PlantApp",
-        "firstPageSubTitle" : "Identify more than 3000+ plants and 88% accuracy.",
-        "legal_text" : "By tapping next, you are agreeing to PlantID ",
-        "terms_of_use" : "Terms of Use",
-        "privacy_policy" : "Privacy Policy"
+    "getStarted": {
+      "firstPageTitle_first": "Hoş geldiniz",
+      "firstPageTitle_second": "PlantApp'e",
+      "firstPageSubTitle": "3000'den fazla bitkiyi %88 doğrulukla tanımlayın.",
+      "legal_text": "İleri'ye dokunarak PlantID'yi kabul etmiş olursunuz ",
+      "terms_of_use": "Kullanım Koşulları",
+      "privacy_policy": "Gizlilik Politikası"
     },
-    "onboarding" : {
-        "first_page_pre_text" : "Take a photo to",
-        "first_page_underlined_text" : "identify",
-        "first_page_after_text" : "the plant!",
-        "second_page_pre_text" : "Get plant",
-        "second_page_underlined_text" : "care guided"
+    "onboarding": {
+      "first_page_pre_text": "Tanımlamak için fotoğraf çekin",
+      "first_page_underlined_text": "tanımla",
+      "first_page_after_text": "bitkiyi!",
+      "second_page_pre_text": "Bitki bakımı için",
+      "second_page_underlined_text": "rehber alın"
     },
-    "paywall" : {
-        "premium" : "Premium",
-        "access_all" : "Access all features",
-        "unlimited" : "Unlimited",
-        "plant_identify" : "Plant Identify",
-        "process" : "Process",
-        "faster" : "Faster",
-        "one_month" : "1 Month",
-        "one_month_price" : "$2.99/month, auto renewable",
-        "one_year" : "1 Year",
-        "one_year_price" : "First 3 days free, then $529,99/year",
-        "save_fifty" : "Save 50%",
-        "try_3_days_free" : "Try free for 3 days",
-        "3_day_desc" : "After the 3-day free trial period you’ll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable",
-        "terms_and_conditions" : "Terms  •  Privacy  •  Restore"
-
+    "paywall": {
+      "premium": "Premium",
+      "access_all": "Tüm özelliklere erişim",
+      "unlimited": "Sınırsız",
+      "plant_identify": "Bitki Tanıma",
+      "process": "İşlem",
+      "faster": "Daha Hızlı",
+      "one_month": "1 Ay",
+      "one_month_price": "Ayda $2.99, otomatik yenilenir",
+      "one_year": "1 Yıl",
+      "one_year_price": "İlk 3 gün ücretsiz, ardından yılda $529,99",
+      "save_fifty": "%50 tasarruf et",
+      "try_3_days_free": "3 günü ücretsiz dene",
+      "3_day_desc": "3 günlük deneme süresinden sonra iptal etmezseniz yılda ₺274,99 ücret alınır. Yıllık abonelik otomatik yenilenir.",
+      "terms_and_conditions": "Koşullar  •  Gizlilik  •  Geri Yükle"
     },
-    "buttons" : {
-        "getStarted": "Get Started",
-        "continue": "Continue"
+    "buttons": {
+      "getStarted": "Başla",
+      "continue": "Devam Et"
     },
-    "home" : {
-        "welcome" : "Hi, plant lover!",
-        "good_afternoon" : "Good afternoon! ⛅",
-        "search_plant" : "Search for plants",
-        "free_premium" : "FREE Premium Available",
-        "upgrade_account" : "Tap to upgrade your account!"
+    "home": {
+      "welcome": "Merhaba, bitki sever!",
+      "good_afternoon": "İyi öğleden sonralar! ⛅",
+      "search_plant": "Bitki ara",
+      "free_premium": "ÜCRETSİZ Premium Mevcut",
+      "upgrade_account": "Hesabınızı yükseltmek için dokunun!"
     },
-    "tabs" : {
-        "home" : "Home",
-        "diagnose" : "Diagnose",
-        "my_garden" : "My Garden",
-        "profile" : "Profile"
+    "tabs": {
+      "home": "Ana Sayfa",
+      "diagnose": "Teşhis Et",
+      "my_garden": "Bahçem",
+      "profile": "Profil"
+    },
+    "error_handling": {
+      "home_page_error": "Ana sayfa yüklenirken bir hata oluştu. Lütfen tekrar deneyin.",
+      "retry": "Yeniden Dene"
     }
-}
+  }
+  
