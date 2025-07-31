@@ -49,7 +49,6 @@ class _HomeViewStateInner extends State<_HomeView> {
     final state = context.watch<HomeBloc>().state;
     final currentPage = state.categories?.meta.pagination.page ?? 1;
     final pageSize = state.categories?.meta.pagination.pageSize ?? 25;
-    final focusNode = FocusNode();
 
     if (state.status == ServiceStatus.failure) {
       return Container(
@@ -76,23 +75,25 @@ class _HomeViewStateInner extends State<_HomeView> {
 
     return state.status == ServiceStatus.loading
         ? const Center(child: CircularProgressIndicator.adaptive())
-        : GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: NotificationListener<ScrollNotification>(
-            onNotification: (scrollInfo) {
-              final isBottom = scrollInfo.metrics.axis == Axis.vertical && scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200;
-              if (isBottom && state.categoriesStatus != ServiceStatus.fetchingMore) {
-                context.read<HomeBloc>().add(FetchMoreCategories(currentPage: currentPage, pageSize: pageSize));
-              }
-              return false;
-            },
+        : NotificationListener<ScrollNotification>(
+          onNotification: (scrollInfo) {
+            final isBottom = scrollInfo.metrics.axis == Axis.vertical && scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200;
+            if (isBottom && state.categoriesStatus != ServiceStatus.fetchingMore) {
+              context.read<HomeBloc>().add(FetchMoreCategories(currentPage: currentPage, pageSize: pageSize));
+            }
+            return false;
+          },
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+                     FocusScope.of(context).unfocus();
+            } ,
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, bottom: MediaQuery.of(context).padding.bottom),
                 child: Column(
                   children: [
-                    _homeHeader(context, focusNode),
+                    _homeHeader(context),
                     SizedBox(height: 24.v),
                     _paywallButton(context),
                     SizedBox(height: 24.v),
@@ -109,7 +110,7 @@ class _HomeViewStateInner extends State<_HomeView> {
         );
   }
 
-  Widget _homeHeader(BuildContext context, FocusNode focusNode) {
+  Widget _homeHeader(BuildContext context) {
     return Stack(
       children: [
         Positioned(left: -20.v, bottom: -20.v, child: CustomImageView(imagePath: ImageConstant.imgHomeLeftLeaf)),
@@ -123,7 +124,6 @@ class _HomeViewStateInner extends State<_HomeView> {
               Text(LocaleKeys.home_good_afternoon.tr(), style: CustomTextStyle.titleLarge?.copyWith(color: Colors.black.withValues(alpha: 0.7))),
               SizedBox(height: 16.v),
               TextFormField(
-                focusNode: focusNode,
                 decoration: InputDecoration(
                   hintText: LocaleKeys.home_search_plant.tr(),
                   prefixIcon: Icon(Icons.search, color: Color(0xFFABABAB), size: 25.v),
