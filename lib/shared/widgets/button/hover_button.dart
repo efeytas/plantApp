@@ -26,7 +26,9 @@ class HoverButton extends StatelessWidget {
                 context.read<ButtonBloc>().add(StartLoading());
 
                 onPressed?.call().then((_) {
-                  context.read<ButtonBloc>().add(EndLoading());
+                  if (context.mounted) {
+                    context.read<ButtonBloc>().add(EndLoading());
+                  }
                 });
               },
             ),

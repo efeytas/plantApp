@@ -9,5 +9,13 @@
             "args": [
             ]
         },
+        {
+            "name": "Dev Release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+            ]
+        },
     ]
 }

@@ -11,7 +11,7 @@ import 'package:plantapp/shared/widgets/button/hover_button.dart';
 import 'package:plantapp/shared/widgets/custom_image_view.dart';
 
 class OnboardingSecondPage extends StatelessWidget {
-    final PageController pageController;
+  final PageController pageController;
 
   const OnboardingSecondPage({super.key, required this.pageController});
 
@@ -24,26 +24,20 @@ class OnboardingSecondPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.h),
           child: HighlightedTextWidget(
             preText: LocaleKeys.onboarding_second_page_pre_text.tr(),
-            highlightedText:
-                LocaleKeys.onboarding_second_page_underlined_text.tr(),
+            highlightedText: LocaleKeys.onboarding_second_page_underlined_text.tr(),
           ),
         ),
         SizedBox(height: 16.v),
-        Expanded(
-          child: CustomImageView(
-            imagePath: ImageConstant.imgOnboardingSecondPage,
-          ),
-        ),
+        Expanded(child: CustomImageView(imagePath: ImageConstant.imgOnboardingSecondPage)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.h),
           child: HoverButton(
             text: LocaleKeys.buttons_continue.tr(),
             onPressed: () async {
-              context.read<OnboardingBloc>().add(PageChanged(2));
-              pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
+              await Future.delayed(const Duration(milliseconds: 500), () {});
+              if (context.mounted) {
+                context.read<OnboardingBloc>().add(PageChanged(2));
+              }
             },
           ),
         ),
