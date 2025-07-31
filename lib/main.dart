@@ -8,6 +8,7 @@ import 'package:plantapp/core/router.dart';
 import 'package:plantapp/core/services.dart';
 import 'package:plantapp/shared/theme/theme_helper.dart';
 import 'package:plantapp/shared/utils/size_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,13 @@ void main() async {
   ThemeHelper().changeTheme('primary');
 
   runApp(EasyLocalization(supportedLocales: const [Locale('en', 'US'), Locale('tr', 'TR')], path: 'assets/lang', child: const MyApp()));
+
+  final prefs = await SharedPreferences.getInstance();
+  final isFirstTime = prefs.getBool('is_first_time') ?? true;
+
+  if (!isFirstTime) {
+    router.pushAndPopUntil(const HomeTabRoute(children: []), predicate: (route) => false);
+  }
 }
 
 final scaffoldKey = GlobalKey<ScaffoldState>();

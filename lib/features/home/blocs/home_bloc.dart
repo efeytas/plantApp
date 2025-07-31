@@ -25,7 +25,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     emit(state.copyWith(status: ServiceStatus.loading));
-
+    final isFirstTime = await prefsService.isFirstTime();
+    if (isFirstTime) {
+      emit(state.copyWith(isVisiblePaywall: true));
+    } else {
+      emit(state.copyWith(isVisiblePaywall: false));
+    }
     try {
       final features = [
         PaywallFeatureModel(

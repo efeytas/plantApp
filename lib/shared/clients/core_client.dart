@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:plantapp/features/home/models/response/categories_response.dart';
-import 'package:plantapp/features/home/models/response/questions_response.dart';
 import 'package:plantapp/shared/configs/endpoints.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
