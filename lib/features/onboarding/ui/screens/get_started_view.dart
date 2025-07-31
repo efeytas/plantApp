@@ -52,8 +52,8 @@ class GetStartedView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16.v),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 56.h),
+                Container(
+                  alignment: Alignment.center,
                   child: Text.rich(
                     TextSpan(
                       text: LocaleKeys.getStarted_legal_text.tr(),

@@ -16,29 +16,26 @@ class QuestionsWidget extends StatelessWidget {
       onTap: () {
         router.push(CustomWebRoute(pageTitle: questionsResponse?.title ?? "", url: questionsResponse?.uri, enableGestures: true));
       },
-      child: SizedBox(
-        width: 240.h,
-        child: Stack(
-          children: [
-            ClipRRect(borderRadius: BorderRadius.circular(12), child: CustomImageView(imagePath: questionsResponse?.imagePath ?? "", fit: BoxFit.cover)),
-
-            Positioned(
-              bottom: (questionsResponse?.title?.length ?? 0) >= 25 ? 15.v : 25.v,
-              left: 14.h,
-              right: 14.h,
-              child: Container(
-                alignment: Alignment.centerLeft,
-                width: 240.h,
-                child: Text(
-                  questionsResponse?.title ?? "",
-                  style: CustomTextStyle.titleMedium?.copyWith(color: Colors.white, fontSize: 15.fSize),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+      child: Stack(
+        children: [
+          ClipRRect(borderRadius: BorderRadius.circular(12), child: CustomImageView(imagePath: questionsResponse?.imagePath ?? "", fit: BoxFit.cover)),
+      
+          Positioned(
+            bottom: (questionsResponse?.title?.length ?? 0) >= 25 ? 15.v : 25.v,
+            left: 14.h,
+            right: 14.h,
+            child: Container(
+              alignment: Alignment.centerLeft,
+              width: 210.h,
+              child: Text(
+                questionsResponse?.title ?? "",
+                style: CustomTextStyle.titleMedium?.copyWith(color: Colors.white, fontSize: 15.fSize),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

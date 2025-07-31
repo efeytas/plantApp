@@ -37,7 +37,7 @@ class HomeState {
   }) {
     return HomeState(
       status: status ?? this.status,
-      categoriesStatus: status ?? this.categoriesStatus,
+      categoriesStatus: categoriesStatus ?? this.categoriesStatus,
       paywallFeatures: paywallFeatures ?? this.paywallFeatures,
       subscriptionOptions: subscriptionOptions ?? this.subscriptionOptions,
       isVisiblePaywall: isVisiblePaywall ?? this.isVisiblePaywall,

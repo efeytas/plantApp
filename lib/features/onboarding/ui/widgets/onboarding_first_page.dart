@@ -18,7 +18,8 @@ class OnboardingFirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
+        Container(
+          alignment: Alignment.centerLeft,
           padding: EdgeInsets.symmetric(horizontal: 20.h),
           child: HighlightedTextWidget(
             preText: LocaleKeys.onboarding_first_page_pre_text.tr(),
